@@ -62,7 +62,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/yourname/srl-language"
+        "url": "https://github.com/sahmeepee/SRL-Language-Extension"
     },
-    "license": "MIT"
+    "license": "GPL-3.0-only"
 }
