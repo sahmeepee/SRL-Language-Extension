@@ -1,0 +1,27 @@
+{
+    "SRL Comment": {
+        "prefix": ["<<-","--","comment"],
+        "body": [
+            "<<-- ${1} --${2}>>"
+        ],
+        "description": "Comment block"
+    },
+    "SRL": {
+        "prefix": "srl",
+        "body": [
+            "<<${2:Code goes here}>>"
+        ],
+        "description": "SRL code block"
+    },
+    "Conditional Text": {
+        "prefix": ["{{","SEL:"],
+        "body": "{{SEL:(${1}):${2}}{${3}}}",
+        "description": "Conditional Text"
+    },
+    "List syntax": {
+        "prefix": ["[[","LIST:"],
+        "body": "[[${1}.${2}:${3:SEL}:(${4:}):${5}]]",
+        "description": "List syntax"
+    }
+
+}

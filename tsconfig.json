@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "target": "ES6",              // Target JavaScript version
+      "module": "commonjs",         // Module system (commonjs for Node.js)
+      "outDir": "./out",            // Output directory for compiled JavaScript
+      "rootDir": "./src",           // Source directory for TypeScript files
+      "strict": true,               // Enable strict TypeScript checking
+      "esModuleInterop": true,      // Enable ES module interop
+      "skipLibCheck": true,         // Skip type checking of declaration files
+      "forceConsistentCasingInFileNames": true // Ensure consistent file name casing
+    },
+    "exclude": [
+      "node_modules",               // Exclude node_modules directory
+      ".vscode-test"                // Exclude VSCode test directory
+    ]
+  }
+  

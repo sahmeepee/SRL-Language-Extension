@@ -1,0 +1,68 @@
+{
+    "name": "srl-language",
+    "displayName": "SRL Language",
+    "description": "Language support for SRL",
+    "version": "0.1.0",
+    "publisher": "Sam Prince",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "srl",
+                "aliases": [
+                    "SRL",
+                    "srl"
+                ],
+                "extensions": [
+                    ".srl"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "srl",
+                "scopeName": "source.srl",
+                "path": "./syntaxes/srl.tmLanguage.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "srl",
+                "path": "./snippets/srl.json"
+            }
+        ],
+        "keybindings": [
+            {
+                "language": "srl",
+                "path": "./keybindings/srl-keybindings.json",
+                "command": ""
+            }
+        ]
+    },
+    "activationEvents": [
+        "onLanguage:srl"
+    ],
+    "main": "./out/extension.js",
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "local-watch": "npx tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "typescript": "^5.2.2",
+        "vscode": "^1.1.37"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yourname/srl-language"
+    },
+    "license": "MIT"
+}

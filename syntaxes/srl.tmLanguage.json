@@ -1,0 +1,212 @@
+{
+  "developer_information": [
+		"To test this syntax, press F5 while this file is open",
+    "A new window should pop up using the current rules. Click stop in this window to end that debug session"
+	],
+  "issues": [
+    "DONE comments need to be constrained to only live inside build text blocks ( << {{ [[ ) and ideally only at the start",
+    "DONE {{ Conditional blocks need to be handled with highlighting for keywords like SEL",
+    "DONE BUT NO COLOUR - The condition in brackets within a {{SEL:  :  block should be handled as punctuation.definition.block.srl",
+    "[[ List blocks need to be handled with highlighting for keywords like SRT TOT SEL and all total mode keywords like SUM",
+    "&P Pnn=(param)·; parameters should be highlighted in a different colour",
+    "<< >> SRL syntax should be detected inside {{SEL }} statements",
+    "Single chevron syntax < > should be detected inside double chevron syntax << >>. ?displayed how?",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "scopeName": "source.srl",
+  "patterns": [
+    {
+      "info": "SRL Syntax in << >>. End tag ensures the SRL pattern is not broken with <<someBuildText<STU_CODE>>>",
+      "begin": "<<",
+      "end": ">>(?!>)",
+      "beginCaptures":{
+        "0": {
+          "name": "punctuation.definition.tag.begin.srl"
+        }
+      },
+      "endCaptures":{
+        "0": {
+          "name": "punctuation.definition.tag.end.srl"
+        }
+      },
+      "name": "source.srl",
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#variables"
+        },
+        {
+          "include": "#functions"
+        },
+        {
+          "include": "#registers"
+        },
+        {
+          "include": "#SLPs"
+        },
+        {
+          "include": "#formats"
+        }
+      ]
+    },
+    {
+      "info": "Conditional syntax in {{ }}. Brace matching and colouring comes from the language-configuration.json",
+      "begin": "{{",
+      "end": "}}",
+      "beginCaptures":{
+        "0": {
+          "name": "punctuation.definition.block.srl"
+        }
+      },
+      "endCaptures":{
+        "0": {
+          "name": "punctuation.definition.block.srl"
+        }
+      },
+      "name": "source.srl",
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#variables"
+        },
+        {
+          "include": "#functions"
+        },
+        {
+          "include": "#registers"
+        },
+        {
+          "include": "#SLPs"
+        },
+        {
+          "include": "#formats"
+        },
+        {
+          "include": "#selKeywords"
+        },
+        {
+          "include": "#selCondition"
+        }
+      ]
+    },
+    {
+      "info": "List syntax in [[ ]]. Bracket matching and colouring comes from the language-configuration.json",
+      "begin": "\\[\\[",
+      "end": "\\]\\]",
+      "beginCaptures":{
+        "0": {
+          "name": "punctuation.definition.block.srl"
+        }
+      },
+      "endCaptures":{
+        "0": {
+          "name": "punctuation.definition.block.srl"
+        }
+      },
+      "name": "source.srl",
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#variables"
+        },
+        {
+          "include": "#functions"
+        },
+        {
+          "include": "#registers"
+        },
+        {
+          "include": "#SLPs"
+        },
+        {
+          "include": "#formats"
+        },
+        {
+          "include": "#listEntity"
+        },
+        {
+          "include": "#listKeywords"
+        },
+        {
+          "include": "#listAggregate"
+        }
+      ]
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns":[
+        {
+          "info": "Must ensure that the comment comes directly after <, { or [",
+          "begin": "(?<=[<{\\[])--",
+          "beginCaptures": {
+            "0": {
+              "name": "comment.block.open.srl"
+            }
+          },
+          "end": "--",
+          "endCaptures": {
+            "0": {
+              "name": "comment.block.close.srl"
+            }
+          },
+          "contentName": "comment.block.srl"
+        }
+      ]
+    },
+    "variables": {
+      "info": "Must ensure that the variable comes directly after <",
+      "match": "(?<=<)#[^>=&]*",
+      "name": "variable.other.srl"
+    },
+    "functions": {
+      "match": "(?<!\\$)\\${1}(?!\\$)[^>]*",
+      "name": "variable.function.srl"
+    },
+    "registers": {
+      "match": "(?<!\\$)\\${2}(?!\\$)[^>]*",
+      "name": "variable.language.srl"
+    },
+    "SLPs": {
+      "match": "@[^>]*",
+      "name": "variable.function.srl"
+    },
+    "formats": {
+      "match": "&(?:QR|([A-Z]))",
+      "name": "support.function.srl"
+    },
+    "selKeywords": {
+      "match": "(?<=\\{)SEL",
+      "name": "support.function.srl"
+    },
+    "selCondition": {
+      "info": "This is identifying the condition block, but not applying any colouring in dark+ theme",
+      "begin": "(?<=\\{SEL:)\\(",
+      "end": "\\)",
+      "name": "punctuation.definition.block.srl"
+    },
+    "listEntity": {
+      "info": "matches ENT.DICT in [[ENT.DICT:SEL:(blah...",
+      "match": "(?<=\\[\\[)[a-zA-Z]{3}\\.[a-zA-Z]{3,6}(?=\\:)",
+      "name": "support.class.srl"
+    },
+    "listKeywords": {
+      "match": "(?<=\\[{2}[a-zA-Z]{3}\\.[a-zA-Z]{3,6}\\:)(SEL|SRT|TOT)",
+      "name": "support.function.srl"
+    },
+    "listAggregate": {
+      "match": "(?<=:)(SUM|MIN|MAX|AVERAGE|AVE|MEDIAN|MED|COUNT|COU|UNIQUE|UNI|EXP|COV|STD|VAR)",
+      "name": "support.function.builtin.agg.srl"
+    }
+  }
+}
+
