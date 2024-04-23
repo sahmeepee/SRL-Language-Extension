@@ -36,6 +36,6 @@ TIP:To move between the different elements in the snippet just press Tab.
 
 ## Bracket support
 The following are treated as brackets, highlighting where opening and closing brackets don't match:
-* \{\} - for conditionals each brace is matched separately to handle the if-else sections properly
+* \{ \} - for conditionals each brace is matched separately to handle the if-else sections properly
 * [[ ]] - for lists the brackets are always in pairs so only a pair is treated as a bracket
 * ( ) - normal brackets (parentheses), typically used in conditions, are matched singly
