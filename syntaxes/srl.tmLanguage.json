@@ -213,12 +213,12 @@
     },
     "andPParamsIn": {
       "info": "Input params are followed by an equals sign",
-      "match": "\\$[0-9]{2}(?=\\=)",
+      "match": "[\\$P][0-9]{2}(?=(\\=|·;))",
       "name": "variable.parameter.in.srl"
     },
     "andPParamsOut": {
       "info": "Output params are not followed by an equals sign",
-      "match": "\\$[0-9]{2}(?!\\=)",
+      "match": "[\\$P][0-9]{2}(?!\\=)",
       "name": "variable.parameter.out.srl"
     }
   }
