@@ -4,11 +4,8 @@
     "A new window should pop up using the current rules. Click stop in this window to end that debug session"
 	],
   "issues": [
-    "DONE comments need to be constrained to only live inside build text blocks ( << {{ [[ ) and ideally only at the start",
-    "DONE {{ Conditional blocks need to be handled with highlighting for keywords like SEL",
     "DONE BUT NO COLOUR - The condition in brackets within a {{SEL:  :  block should be handled as punctuation.definition.block.srl",
     "[[ List blocks need to be handled with highlighting for keywords like SRT TOT SEL and all total mode keywords like SUM",
-    "&P Pnn=(param)·; parameters should be highlighted in a different colour",
     "<< >> SRL syntax should be detected inside {{SEL }} statements",
     "Single chevron syntax < > should be detected inside double chevron syntax << >>. ?displayed how?",
     "",
@@ -51,6 +48,12 @@
         },
         {
           "include": "#formats"
+        },
+        {
+          "include": "#andPParamsIn"
+        },
+        {
+          "include": "#andPParamsOut"
         }
       ]
     },
@@ -164,12 +167,13 @@
       ]
     },
     "variables": {
-      "info": "Must ensure that the variable comes directly after <",
+      "info": "Must ensure that the #variable comes directly after <",
       "match": "(?<=<)#[^>=&]*",
       "name": "variable.other.srl"
     },
     "functions": {
-      "match": "(?<!\\$)\\${1}(?!\\$)[^>]*",
+      "info": "Must ensure that the $function comes directly after <",
+      "match": "(?<=<)(?<!\\$)\\${1}([a-zA-Z ]{1,})",
       "name": "variable.function.srl"
     },
     "registers": {
@@ -206,6 +210,16 @@
     "listAggregate": {
       "match": "(?<=:)(SUM|MIN|MAX|AVERAGE|AVE|MEDIAN|MED|COUNT|COU|UNIQUE|UNI|EXP|COV|STD|VAR)",
       "name": "support.function.builtin.agg.srl"
+    },
+    "andPParamsIn": {
+      "info": "Input params are followed by an equals sign",
+      "match": "\\$[0-9]{2}(?=\\=)",
+      "name": "variable.parameter.in.srl"
+    },
+    "andPParamsOut": {
+      "info": "Output params are not followed by an equals sign",
+      "match": "\\$[0-9]{2}(?!\\=)",
+      "name": "variable.parameter.out.srl"
     }
   }
 }
