@@ -2,7 +2,7 @@
     "name": "srl-language",
     "displayName": "SRL Language",
     "description": "Language support for SRL",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "publisher": "Sam Prince",
     "engines": {
         "vscode": "^1.60.0"
