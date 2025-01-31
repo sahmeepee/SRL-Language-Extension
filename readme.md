@@ -1,5 +1,5 @@
 # SRL Syntax Extension
-This extension gives you the ability to view SRL syntax with appropriate colouring and some snippets
+This extension gives you the ability to view SRL syntax with appropriate colouring and some snippets.
 
 ## Installation
 Install from the .vsix file:
